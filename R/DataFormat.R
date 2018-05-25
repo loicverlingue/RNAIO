@@ -43,4 +43,11 @@ ImmunoMoscatoPatients[ImmunoMoscatoPatients$Loc_biopsie%in%c("peritoine","surren
 ImmunoMoscatoPatients[ImmunoMoscatoPatients$Loc_biopsie%in%c("prostate","vagin"),"Loc_biopsie"]<-"pelvis"
 ImmunoMoscatoPatients$Loc_biopsie<-gsub(" ","", ImmunoMoscatoPatients$Loc_biopsie)
 
+# further on, a step of cleaning biopsy variable
+ImmunoMoscatoPatients$Loc_biopsie[ImmunoMoscatoPatients$Loc_biopsie==""|is.na(ImmunoMoscatoPatients$Loc_biopsie)]<-"others"
+ImmunoMoscatoPatients$Loc_biopsie[ImmunoMoscatoPatients$Loc_biopsie=="poumon"]<-"lung"
+ImmunoMoscatoPatients$Loc_biopsie[ImmunoMoscatoPatients$Loc_biopsie=="foie"]<-"liver"
+ImmunoMoscatoPatients$Loc_biopsie[ImmunoMoscatoPatients$Loc_biopsie=="ganglions"]<-"Lymph node"
+ImmunoMoscatoPatients$Loc_biopsie[ImmunoMoscatoPatients$Loc_biopsie=="abdominal"]<-"abdomen"
+ImmunoMoscatoPatients$Loc_biopsie[ImmunoMoscatoPatients$Loc_biopsie%in%c("orl","orl ")]<-"head & neck"
 
