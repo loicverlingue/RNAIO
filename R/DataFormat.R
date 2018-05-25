@@ -34,3 +34,13 @@ ImmunoMoscatoPatients$Interval_PD_biops<-as.numeric(ImmunoMoscatoPatients$date_b
 # and compute ORR as:
 ImmunoMoscatoPatients$ORR[ImmunoMoscatoPatients$RR_ML%in%c("PD","SD")]<-"PD_SD"
 ImmunoMoscatoPatients$ORR[ImmunoMoscatoPatients$RR_ML%in%c("PR","CR")]<-"PR_CR"
+
+# limit skewed variables for tumor types and site of biopsy
+ImmunoMoscatoPatients[ImmunoMoscatoPatients$GlobalHisto%in%c("","CONNECTIVE AND SOFT TISSUS","GLANDS","SNC","SKIN"),"GlobalHisto"]<-"OTHERS"
+ImmunoMoscatoPatients[ImmunoMoscatoPatients$Loc_biopsie%in%c("","biop derm","mediastin","SNC","SKIN"),"Loc_biopsie"]<-"autre"
+ImmunoMoscatoPatients[ImmunoMoscatoPatients$Loc_biopsie%in%"biop derm","Loc_biopsie"]<-"peau"
+ImmunoMoscatoPatients[ImmunoMoscatoPatients$Loc_biopsie%in%c("peritoine","surrenale", "pancreas","vesicale","rate","rein","retro-peritoneal"),"Loc_biopsie"]<-"abdominal"
+ImmunoMoscatoPatients[ImmunoMoscatoPatients$Loc_biopsie%in%c("prostate","vagin"),"Loc_biopsie"]<-"pelvis"
+ImmunoMoscatoPatients$Loc_biopsie<-gsub(" ","", ImmunoMoscatoPatients$Loc_biopsie)
+
+
