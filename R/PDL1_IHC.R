@@ -1,10 +1,10 @@
 # IHC from Moscato
 
 #pooling the data from July 3rd 2017
-IHCPDL1<-read.csv2("C:/Users/L_VERLINGUE/Desktop/DITEP/Immuno/IHC/FinalTable tableIOMOSC_IHCPDL1_20170703.csv")
+IHCPDL1<-read.csv2("/IHC/FinalTable tableIOMOSC_IHCPDL1_20170703.csv")
 IHCPDL1<-IHCPDL1[!is.na(IHCPDL1$CTUM0),]
 
-IHCPDL1N2<-read.csv2("C:/Users/L_VERLINGUE/Desktop/DITEP/Immuno/IHC/IHC_PDL1_MOSC.csv")
+IHCPDL1N2<-read.csv2("/IHC/IHC_PDL1_MOSC.csv")
 IHCPDL1N2<-IHCPDL1N2[!is.na(IHCPDL1N2$CTUM0),]
 
 COLN<-colnames(IHCPDL1)[colnames(IHCPDL1)%in%colnames(IHCPDL1N2)]
