@@ -1,6 +1,8 @@
-##########################################
-# Salmon matrix generation from file with quantifications, by David Brandao
+#####################
+# author: David Brandao & Loic Verlingue, DITEP, 08/06/2018
+# Salmon matrix generation from file with quantifications
 #Z:/ is a generic name for a local server
+#####################
 
 #load packages
 library(tximport)
