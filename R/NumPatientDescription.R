@@ -1,4 +1,5 @@
 #####################
+# author: Loic Verlingue, DITEP, 08/06/2018
 # description of the number of patients with RNAseq and the type of treatment they have received (ICB or MTA) and respective time of biopsy
 # this script implies you have already :
 # - loaded RNAseq data (detailed in txtimport.R) 
