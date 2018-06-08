@@ -5,11 +5,12 @@
 # - loaded RNAseq data (detailed in txtimport.R) 
 # - processed with DataFromat.R to obtain the ImmunoMoscatoPatients table for patients treated with ICB 
 # - done the groups of ICB treatment responses with ImmunoPatientsGroups1Rvs2R.R
-
+#
 # This section will load other tables: 
 # Clinic - is the CRF of the MOSCATO-01 trial for patients treated with MTA
 # Fustable - is a table with minimal characteristics (age, tumor type, time of biopsy...) for real time monitoring
 # dir - is a directory I use
+#####################
 
 #load supplementary tables
 Clinic <- read.csv2("/moscato_gv12102016.csv",stringsAsFactors = F); Clinic$X <- NULL
