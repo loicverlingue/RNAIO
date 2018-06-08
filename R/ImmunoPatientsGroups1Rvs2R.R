@@ -1,7 +1,9 @@
 #################################
+# author : Loic Verlingue, 08/06/2018
 # this section is to define groups of patients treated with ICB that are primary resistant or secondary resitant and the time of biospy with respect to treatment
 # 1R is primary resistant
 # 2R is secondary resistant
+#################################
 
 # PFS discretisation: define the cutoff for resistant, based on the litterature
 ImmunoMoscatoPatients$BadPFS <- ImmunoMoscatoPatients$PFS_immuno<90
