@@ -40,12 +40,15 @@ FusTable$TCGA[FusTable$TCGA==""]<-"miscellaneous"
 FusTable$GlobalHisto[is.na(FusTable$GlobalHisto)]<-"Unknown"
 FusTable$GlobalHisto[FusTable$GlobalHisto==""]<-"miscellaneous"
 
-# allocate treatment types
+# to allocate treatment types, needs to define 1st the categories
+#
+
+# then integrate that into Fustable
 FusTable[FusTable$Personid%in%Clinic$Personid[Clinic$oriente_traite==1],"TTT"]<-"MTA"
 FusTable[FusTable$Personid%in%NUMRpost,"TTT"]<-"IONR"
 FusTable[FusTable$Personid%in%NUMRpre,"TTT"]<-"IO"
-#FusTable[FusTable$Personid%in%DUPL,"TTT"]<-"both_IO_IONR"
-#FusTable[FusTable$Personid%in%IOMTA,"TTT"]<-"IO_NR_MTA"
+FusTable[FusTable$Personid%in%DUPL,"TTT"]<-"both_IO_IONR"
+FusTable[FusTable$Personid%in%IOMTA,"TTT"]<-"IO_NR_MTA"
 FusTable$TTT[is.na(FusTable$TTT)]<-"Others"
 table(FusTable$TTT)
 
