@@ -1,6 +1,9 @@
 #####################
 # description of the number of patients with RNAseq and the type of treatment they have received (ICB or MTA) and respective time of biopsy
-# this script implies you have already loaded RNAseq data (detailed in txtimport.R), processed with DataFromat.R to obtain the ImmunoMoscatoPatients table for patients treated with ICB 
+# this script implies you have already :
+# - loaded RNAseq data (detailed in txtimport.R) 
+# - processed with DataFromat.R to obtain the ImmunoMoscatoPatients table for patients treated with ICB 
+# - done the groups of ICB treatment responses with ImmunoPatientsGroups1Rvs2R.R
 
 # This section will load other tables: 
 # Clinic - is the CRF of the MOSCATO-01 trial for patients treated with MTA
