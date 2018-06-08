@@ -1,4 +1,7 @@
+#####################
+# author: Loic Verlingue, DITEP, 08/06/2018
 # IHC from Moscato
+#####################
 
 #pooling the data from July 3rd 2017
 IHCPDL1<-read.csv2("C:/Users/L_VERLINGUE/Desktop/DITEP/Immuno/IHC/FinalTable tableIOMOSC_IHCPDL1_20170703.csv")
