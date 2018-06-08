@@ -1,4 +1,5 @@
 ##################
+# author : Loic Verlingue, 08/06/2018
 # Working on data format
 ##################
 
