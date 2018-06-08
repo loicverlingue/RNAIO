@@ -1,5 +1,5 @@
 ##########################################
-# Salmon matrix generation by David Brandao
+# Salmon matrix generation from file with quantifications, by David Brandao
 #Z:/ is a generic name for a local server
 
 #load packages
@@ -11,7 +11,7 @@ FILES<-list.files("Z:/quants/")
 matrix_expression = read.table(paste("Z:/quants/",FILES[1],"/quant.sf",sep = ""),header = T)
 head(matrix_expression)
 
-#---------------------from transcripts to genes---------------------------#
+# from transcripts to genes
 transcript_name = matrix_expression$Name
 transcript_name.list = lapply(transcript_name,function(x){unlist(strsplit(as.character(x),split="[|]"))[6]}) 
 transcript_name.list = unlist(transcript_name.list)
