@@ -52,3 +52,41 @@ ImmunoMoscatoPatients$Loc_biopsie[ImmunoMoscatoPatients$Loc_biopsie=="ganglions"
 ImmunoMoscatoPatients$Loc_biopsie[ImmunoMoscatoPatients$Loc_biopsie=="abdominal"]<-"abdomen"
 ImmunoMoscatoPatients$Loc_biopsie[ImmunoMoscatoPatients$Loc_biopsie%in%c("orl","orl ")]<-"head & neck"
 
+
+####################################
+# 3.FusTable: a table that stores several usefull clinical information 
+ 
+FusTable$RNAdata<-FusTable$Personid%in%NUMFILE
+
+# discard duplicates
+table(duplicated(FusTable$Personid))
+FusTable<-FusTable[!duplicated(FusTable$Personid),]
+
+# keep only patients with RNA data
+table(FusTable$RNAdata)
+FusTable<-FusTable[FusTable$RNAdata,]
+
+# allocate miscellaneous or unknown
+FusTable$TCGA[is.na(FusTable$TCGA)]<-"Unknown"
+FusTable$TCGA[FusTable$TCGA==""]<-"miscellaneous"
+
+###########################################
+# 4. Quality: table of the quality check for patients' samples before sequencing
+
+Quality$RIN_ARN<-as.numeric(Quality$RIN)
+head(Quality$RIN);head(Quality$RIN_ARN)
+Quality$NIP<-paste(substring(Quality$NumIGR,first = 0, last = 4),"-",substring(Quality$NumIGR, first = 5),sep = "")
+Quality$Personid<-gsub(" .*","", gsub("foie","", gsub("RE","", gsub("PED","", gsub("_.*", "", Quality$Num.Incl)))))
+Quality$NumRNA<- gsub(" ","", gsub("-ARN", "", Quality$Nom.Ech.1))
+
+# date biopsy
+Quality$date_biopsie<-as.Date(Quality$date.pvt.2, format="%d/%m/%Y")
+Quality$date_biopsie[is.na(Quality$date_biopsie)]<-as.Date(Quality$date.pvt.1, format="%d/%m/%Y")[is.na(Quality$date_biopsie)]
+Quality$date_biopsie[is.na(Quality$date_biopsie)]<-as.Date(Quality$date.pvt, format="%d/%m/%Y")[is.na(Quality$date_biopsie)]
+
+# add date biopsy from fustable when not in Quality table
+DATE_RNA<-FusTable[FusTable$Personid%in%Quality$Personid[is.na(Quality$date_biopsie)],c("Personid","date_biopsie")]
+for(i in seq(nrow(DATE_RNA))){
+  Quality[Quality$Personid%in%DATE_RNA$Personid[i]&is.na(Quality$date_biopsie),"date_biopsie"]<-DATE_RNA[i,2]
+}
+
