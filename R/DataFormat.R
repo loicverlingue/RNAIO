@@ -1,9 +1,10 @@
 ##################
-# Working on data format
+# Data formats processing
+# author: Loic Verlingue, DITEP
 ##################
 
 ##################
-# 1. Gene expression computed with Salmon, processed on November 3rd 2017
+# 1. Gene expression computed with Salmon (first version on November 3rd 2017)
 # txtimport data matrices stored in "SalmonGENEXP"
 
 ## for counts
@@ -20,7 +21,7 @@ colnames(SalmonGENEXP$abundance)<-NUMFILE
 SalmonTPM<-log10(SalmonGENEXP$abundance+1)
 
 ##################
-# 2. clinical data, from patients' table called "ImmunoMoscatoPatients", updated in November 14th 2017
+# 2. clinical data, from patients' table called "ImmunoMoscatoPatients" (first version on November 14th 2017)
 # clean sample id and tag those with RNAseq
 NUMFILE<-gsub("_.*","", gsub("foie","", gsub("RE","", gsub("PED","", gsub("Sample_","", gsub("-.*", "", colnames(SalmonGENEXP$counts)))))))
 ImmunoMoscatoPatients$RNAdata <- ImmunoMoscatoPatients$Personid%in%NUMFILE
