@@ -13,22 +13,12 @@
 #####################
 
 #load supplementary tables
-Clinic <- read.csv2("/moscato_gv12102016.csv",stringsAsFactors = F); Clinic$X <- NULL
+# clinic is the moscato table - treatment with MTA
 Clinic$NIP <- as.character(Clinic$NIP)
 Clinic$OS <- as.Date(Clinic$dfu, format = "%d/%m/%Y")-as.Date(Clinic$icdtc, format = "%d/%m/%Y")
 ORTR <- Clinic[Clinic$oriente_traite==1,]
 
-FusTable <- read.csv2("Fustable.csv", stringsAsFactors = F)
-
 # Processing Fustable
-
-# add unknown patients from RNAseq table in fustable
-for(i in NUMFILE[!NUMFILE%in%FusTable$Personid]){
-  FusTable[nrow(FusTable)+1,"Personid"]<-i
-  FusTable[nrow(FusTable),"TCGA"]<-"Unknown"
-  FusTable[nrow(FusTable),"GlobalHisto"]<-"Unknown"
-}
-
 # tag those with RNAseq
 FusTable$RNAdata<-FusTable$Personid%in%NUMFILE
 
